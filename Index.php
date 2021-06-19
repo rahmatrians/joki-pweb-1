@@ -17,9 +17,9 @@ NIM: 41519010023-->
     <title>M.Ardiansyah (41519010023)</title>
 </head>
 <frameset rows="100%, 18%" border="0">
-    <frame src="Ardi's_Header.html">
+    <frame src="Ardi's_Header.php">
         <!-- Di atas adalah hyperlink menuju file header-->
-        <frame src="Ardi's_Footer.html" scrolling="no">
+        <frame src="Ardi's_Footer.php" scrolling="no">
             <!--Di atas adalah hyperlink menuju file footer-->
 
 </html>

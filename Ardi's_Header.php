@@ -2,6 +2,22 @@
 Nama: M.Ardiansyah
 NIM: 41519010023-->
 
+
+<?php
+
+include 'config.php';
+
+$id = 1;
+$get = $conx->query("SELECT * FROM mahasiswa WHERE id_mhs = '$id'");
+$data = mysqli_fetch_assoc($get);
+
+$splits_edu = explode(".", $data['education']);
+$splits_exp = explode(".", $data['experience']);
+$splits_skill = explode(".", $data['skill']);
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -20,13 +36,13 @@ NIM: 41519010023-->
         * {
             box-sizing: border-box;
         }
-        
+
         html {
             height: 100%;
             width: 100%;
             scroll-behavior: smooth;
         }
-        
+
         body {
             margin: 0;
             font-family: 'Roboto', normal !important;
@@ -34,17 +50,17 @@ NIM: 41519010023-->
             background-color: white;
             color: white !important;
         }
-        
+
         header {
             position: relative;
-            background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url("images/bg.jpg");
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url("images/bg.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             width: 100%;
             height: 850px;
         }
-        
+
         header #sect-title {
             position: absolute;
             text-align: center;
@@ -52,7 +68,7 @@ NIM: 41519010023-->
             left: 25%;
             top: 35%;
         }
-        
+
         header p#mainTitle {
             font-size: 50px;
             font-weight: 500;
@@ -60,7 +76,7 @@ NIM: 41519010023-->
             margin: 0 !important;
             /*color: #ffe004;*/
         }
-        
+
         header p#secTitle {
             margin-top: 20px;
             font-size: 60px;
@@ -68,11 +84,11 @@ NIM: 41519010023-->
             letter-spacing: 5px;
             color: #ffe004;
         }
-        
+
         section.content {
             padding: 80px 20px;
         }
-        
+
         .row {
             display: flex;
             flex: 1 0 100%;
@@ -80,17 +96,17 @@ NIM: 41519010023-->
             margin-right: -15px;
             margin-left: -15px;
         }
-        
+
         .col-set {
             flex: 0 0 50%;
             max-width: 50%;
         }
-        
+
         .col-full {
             flex: 0 0 100%;
             max-width: 100%;
         }
-        
+
         .container {
             /*width: 100%;*/
             width: 1140px;
@@ -99,13 +115,13 @@ NIM: 41519010023-->
             margin-right: auto;
             margin-left: auto;
         }
-        
+
         .progress-bar {
             width: 100%;
             background-color: darkgray;
             border-radius: 20px;
         }
-        
+
         .bar {
             text-align: right;
             /*margin-right: 10px;*/
@@ -114,48 +130,48 @@ NIM: 41519010023-->
             padding-bottom: 10px;
             color: white;
         }
-        
+
         .office {
             width: 80%;
             background-color: #bd2525;
             border-radius: 20px;
         }
-        
+
         .lightroom {
             width: 90%;
             background-color: #1c46b9;
             border-radius: 20px;
         }
-        
+
         .premiere {
             width: 75%;
             background-color: #742dd1;
             border-radius: 20px;
         }
-        
+
         .networking {
             width: 80%;
             background-color: #cad43b;
             border-radius: 20px;
         }
-        
+
         .hardware {
             width: 80%;
             background-color: #5aa543;
             border-radius: 20px;
         }
-        
+
         .cplus {
             width: 75%;
             background-color: #44c2c2;
             border-radius: 20px;
         }
-        
+
         .form-group {
             position: relative;
             margin: 20px 20px 20px 0;
         }
-        
+
         label {
             font-size: 14px;
             position: absolute;
@@ -165,14 +181,14 @@ NIM: 41519010023-->
             padding: 0 5px;
             color: #636363;
         }
-        
+
         .form-control {
             width: 100%;
             padding: 10px 10px;
             border-radius: 3px;
             /* border: 1px solid #999999; */
         }
-        
+
         button.btn-submit {
             width: 100%;
             padding: 10px 30px 10px 30px;
@@ -184,40 +200,40 @@ NIM: 41519010023-->
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
+
         input {
             /*background-color: transparent;*/
             border: 2px solid #d7d7d7;
             border-radius: 10px;
         }
-        
+
         textarea {
             /*background-color: transparent;*/
             border: 2px solid #d7d7d7;
             border-radius: 10px;
         }
-        
+
         footer {
             padding: 30px;
             background-color: #2c2c2c;
         }
-        
+
         a.sm-link {
             color: white;
         }
-        
+
         a.sm-link:hover {
             opacity: 0.5;
         }
-        
+
         ul li {
             list-style: none;
         }
-        
+
         a#btn-kebawah {
             text-decoration: none;
         }
-        
+
         #btn-kebawah {
             padding: 10px 65px;
             /*border: 2px solid #ffe004;*/
@@ -234,7 +250,8 @@ NIM: 41519010023-->
     <header>
         <div id="sect-title">
             <p id="mainTitle">Hello</p>
-            <p id="secTitle"><span style="font-weight: 300">I Am</span> <span style="font-weight: 600;">M.Ardiansyah</span></p>
+            <p id="secTitle"><span style="font-weight: 300">I Am</span> <span style="font-weight: 600;"><?= $data['full_name'] ?>
+                </span></p>
             <!--        <p id="infoTitle">082112554051 | ardiansyah3544@gmail.com</p>-->
             <a href="#started" id="btn-kebawah" style="margin-right: 20px;">Click Here !</a>
         </div>
@@ -251,8 +268,8 @@ NIM: 41519010023-->
                 <div class="col-set">
                     <h1 style="font-size: 35px;margin-bottom: 10px;color: black">About Me.</h1>
                     <div style="width: 50px; height: 7px; background-color: #ffcf1f;"></div>
-                    <p style="font-size: 18px; line-height: 35px; color: black;text-justify: inter-word;">Hi! I am M.Ardiansyah. I usually called Ardi. I am 19 years old. I was born in Pekalongan, 3rd of May 2001. I live in Mustika Tigaraksa, Block C 16 No. 42, in Kabupaten Tangerang, Banten. I am currently studying at Mercubuana University
-                        majoring in Computer Engineer. I have passion in computer things since i was a kid. And i want to learn more about programming languages. My dream is to make my own startup that made mobile apps. </p>
+                    <p style="font-size: 18px; line-height: 35px; color: black;text-justify: inter-word;"><?= $data['about'] ?>
+                    </p>
                     <br>
                     <br>
                 </div>
@@ -269,25 +286,33 @@ NIM: 41519010023-->
                 </div>
                 <div class="col-set" style="padding: 0px 20px; text-align: center; margin-left: auto; margin-right: auto">
                     <ul>
-                        <li>
-                            <p style="color: black; margin-right: 40px"><b>SDS DEWI KUNTI-1</b></p>
-                            <p style="color: black; margin-right: 40px">( 2007 - 2013 )</p>
-                        </li>
-                    </ul>
-                    <li>
-                        <p style="color: black;"><b>MTSN 2 TANGERANG</b></p>
-                        <p style="color: black;">( 2013 - 2016 )</p>
-                    </li>
-                    <li>
-                        <p style="color: black;"><b>SMKN 1 KABUPATEN TANGERANG</b></p>
-                        <p style="color: black;">Computer Networking</p>
-                        <p style="color: black;">( 2016 - 2019 )</p>
-                    </li>
-                    <li>
-                        <p style="color: black;"><b>UNIVERSITAS MERCUBUANA</b></p>
-                        <p style="color: black;">Computer Science</p>
-                        <p style="color: black;">( 2019 - Now )</p>
-                    </li>
+
+                        <?php
+                        $temp_edu = [];
+                        foreach ($splits_edu as $edu) {
+                            $splitted = explode(",", $edu);
+                        ?>
+                            <li>
+                                <?php
+                                foreach ($splitted as $val) {
+                                    array_push($temp_edu, $val);
+                                ?>
+
+                                <?php
+                                }
+                                ?>
+                                <p style="color: black;"><b><?= $temp_edu[0]; ?>
+                                    </b></p>
+                                <p style="color: black;"><?= $temp_edu[1]; ?></p>
+                                <p style="color: black;">( <?= $temp_edu[2]; ?> - <?= $temp_edu[3]; ?> )</p>
+                                <br>
+
+                            </li>
+                        <?php
+                            $temp_edu = [];
+                        }
+                        ?>
+
                     </ul>
                 </div>
     </section>
@@ -301,17 +326,34 @@ NIM: 41519010023-->
                 </div>
                 <div class="col-set" style="padding: 0px 20px; text-align: center; margin-left: auto; margin-right: auto">
                     <ul>
-                        <li>
-                            <p style="color: black; margin-right: 40px"><b>PT.MEKARJAYA GEMARUBBERINDO</b></p>
-                            <p style="color: black; margin-right: 40px">Internship</p>
-                            <p style="color: black; margin-right: 40px">( August 2018 - October 2018 )</p>
-                        </li>
-                        <br>
-                        <li>
-                            <p style="color: black; margin-right: 40px"><b>PT.MEERKATS FLEXIPACK INDONESIA</b></p>
-                            <p style="color: black; margin-right: 40px">IT Helpdesk</p>
-                            <p style="color: black; margin-right: 40px">( August 2020 - Now )</p>
-                        </li>
+
+                        <?php
+                        $temp_exp = [];
+                        foreach ($splits_exp as $exp) {
+                            $splitted = explode(",", $exp);
+                        ?>
+                            <li>
+                                <?php
+                                foreach ($splitted as $val) {
+                                    array_push($temp_exp, $val);
+                                ?>
+
+                                <?php
+                                }
+                                ?>
+                            <li>
+                                <p style="color: black; margin-right: 40px"><b><?= $temp_exp[0]; ?>
+                                    </b></p>
+                                <p style="color: black; margin-right: 40px"><?= $temp_exp[1]; ?></p>
+                                <p style="color: black; margin-right: 40px">( <?= $temp_exp[2]; ?> - <?= $temp_exp[3]; ?> )</p>
+                                <br>
+
+                            </li>
+                        <?php
+                            $temp_exp = [];
+                        }
+                        ?>
+
                     </ul>
                 </div>
     </section>
@@ -325,12 +367,33 @@ NIM: 41519010023-->
                 </div>
                 <div class="col-set" style="padding: 5px 20px;">
                     <ul>
-                        <li>
-                            <p style="color: black;"><b>Microsoft Office</b></p>
-                            <div class="progress-bar">
-                                <div class="bar office">80%</div>
-                            </div>
-                        </li>
+                        <?php
+                        $temp_exp = [];
+                        foreach ($splits_exp as $exp) {
+                            $splitted = explode(",", $exp);
+                        ?>
+                            <li>
+                                <?php
+                                foreach ($splitted as $val) {
+                                    array_push($temp_exp, $val);
+                                ?>
+
+                                <?php
+                                }
+                                ?>
+                            <li>
+                                <p style="color: black;"><b>Adobe Lightroom</b></p>
+                                <div class="progress-bar">
+                                    <div class="bar lightroom">90%</div>
+                                </div>
+                                <br>
+
+                            </li>
+                        <?php
+                            $temp_exp = [];
+                        }
+                        ?>
+
                         <li>
                             <p style="color: black;"><b>Adobe Lightroom</b></p>
                             <div class="progress-bar">
@@ -349,21 +412,12 @@ NIM: 41519010023-->
                     <ul>
                         <li>
                             <p style="color: black;"><b>Networking (Cisco)</b></p>
-                            <div class="progress-bar">
-                                <div class="bar networking">80%</div>
-                            </div>
                         </li>
                         <li>
                             <p style="color: black;"><b>Hardware Maintenance</b></p>
-                            <div class="progress-bar">
-                                <div class="bar hardware">80%</div>
-                            </div>
                         </li>
                         <li>
                             <p style="color: black;"><b>C++</b></p>
-                            <div class="progress-bar">
-                                <div class="bar cplus">75%</div>
-                            </div>
                         </li>
                     </ul>
                 </div>
